@@ -14,6 +14,12 @@
  #pragma warning(push, 0)
 #endif
 #include "audioeffectx.h"
+#if defined(__wasm__)
+ #include <set>
+ #include <string>
+ #include <math.h>
+ #define throw std::abort()   // the browser build has no exceptions; Airwindows only throws on impossible parameter indices
+#endif
 #define createEffectInstance createEffectInstance_Galactic
 #include "Galactic/Galactic.h"
 #include "Galactic/Galactic.cpp"

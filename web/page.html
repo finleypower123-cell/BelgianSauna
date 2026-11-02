@@ -1,0 +1,224 @@
+<title>Belgian Sauna</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Yeseva+One&family=Barlow+Semi+Condensed:ital,wght@0,500;0,600;0,700;1,500&family=VT323&display=swap">
+<style>
+/* Layout: one cedar-panelled rack. Head unit (thermometer LCD, meters, STEAM stove dial) above the eight rooms in signal order. Single warm-dark look by design. */
+:root {
+  color-scheme: dark;
+  --bench: #1d100b;
+  --cedar-dark: #2a1710;
+  --cedar: #4a2a1b;
+  --cedar-hi: #6b3e26;
+  --line: rgba(255, 217, 184, 0.18);
+  --steam: #fbeee0;
+  --steam-2: #e7cbb5;
+  --steam-3: #b08d78;
+  --peach: #ffb38a;
+  --rose: #f2a2c0;
+  --ember: #ff7a45;
+  --plunge: #9fe3ff;
+  --lcd: #1a0f0a;
+  --lcd-ink: #ffcf8a;
+  --f-logo: 'Yeseva One', 'Didot', Georgia, serif;
+  --f-ui: 'Barlow Semi Condensed', 'Arial Narrow', sans-serif;
+  --f-lcd: 'VT323', 'Courier New', monospace;
+}
+html { background: var(--bench); }
+body {
+  background:
+    radial-gradient(900px 500px at 85% 0%, rgba(255, 122, 69, 0.14), transparent 70%),
+    repeating-linear-gradient(180deg, #3f2417 0 44px, #36200f 44px 46px),
+    var(--bench);
+  color: var(--steam); font-family: var(--f-ui); font-size: 15px; -webkit-font-smoothing: antialiased;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--bench); }
+.wrap { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 18px 40px; }
+.rack { max-width: 1200px; margin: 0 auto; }
+.head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 10px 24px; padding: 4px 4px 16px; border-bottom: 1px solid var(--line); }
+.maker { font: 600 12px/1 var(--f-ui); letter-spacing: 0.2em; text-transform: uppercase; color: var(--steam-3); margin-bottom: 8px; }
+h1 { margin: 0; font: 400 clamp(38px, 8vw, 72px)/0.95 var(--f-logo); letter-spacing: 0.01em;
+  background: linear-gradient(180deg, var(--steam) 15%, var(--peach) 70%, var(--rose)); -webkit-background-clip: text; background-clip: text; color: transparent;
+  text-shadow: 0 0 40px rgba(255, 179, 138, 0.15); }
+.tag { margin: 8px 0 0; font: italic 500 16px/1.35 var(--f-ui); color: var(--rose); }
+.note { margin: 6px 0 0; font: 500 14px/1.4 var(--f-ui); color: var(--steam-2); max-width: 60ch; }
+.badge { font: 600 12px/1.6 var(--f-ui); letter-spacing: 0.14em; text-transform: uppercase; color: var(--steam-3); text-align: right; }
+
+.unit { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 14px; padding: 16px 0 4px; }
+.lcdcol { min-width: 0; display: flex; flex-direction: column; gap: 10px; }
+.lcd { position: relative; overflow: hidden; border-radius: 10px; background: linear-gradient(180deg, #24140d, var(--lcd)); border: 2px solid #0a0503; padding: 10px 14px; color: var(--lcd-ink); font: 400 20px/1.1 var(--f-lcd); text-shadow: 0 0 6px rgba(255, 207, 138, 0.35); }
+.lcd::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(300px 120px at 30% 30%, rgba(251, 238, 224, 0.06), transparent 70%), radial-gradient(260px 100px at 75% 60%, rgba(251, 238, 224, 0.05), transparent 70%); }
+.lcd-row { display: flex; justify-content: space-between; gap: 12px; min-width: 0; }
+.lcd-row > span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.lcd-top { font-size: 23px; }
+.dim { opacity: 0.68; }
+.lcd-joke { font-size: 18px; opacity: 0.75; margin-top: 2px; }
+.wavebox { position: relative; height: 92px; margin: 8px 0 6px; cursor: pointer; border-top: 1px dashed rgba(255, 207, 138, 0.2); border-bottom: 1px dashed rgba(255, 207, 138, 0.2); }
+#wave { width: 100%; height: 100%; display: block; }
+.playhead { position: absolute; top: 0; bottom: 0; left: 0; width: 2px; background: var(--steam); box-shadow: 0 0 8px var(--peach); pointer-events: none; }
+.progress { position: absolute; left: 0; bottom: 0; height: 3px; width: 100%; background: var(--rose); transform-origin: left; transform: scaleX(0); }
+.lcd-info { font-size: 19px; min-height: 1.2em; color: var(--steam); }
+.btnrow { display: flex; flex-wrap: wrap; gap: 8px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 14px; border-radius: 9px; cursor: pointer; border: 1px solid var(--line); color: var(--steam);
+  background: linear-gradient(180deg, var(--cedar-hi), var(--cedar-dark)); box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 2px 4px rgba(0,0,0,.4);
+  font: 700 13px/1 var(--f-ui); letter-spacing: 0.12em; text-transform: uppercase; user-select: none; -webkit-user-select: none; }
+.btn:active { transform: translateY(1px); }
+.btn:disabled { opacity: 0.45; cursor: default; }
+.btn.primary { background: linear-gradient(180deg, #ffd1b5, var(--peach)); color: var(--bench); border-color: rgba(255,255,255,.35); }
+.btn input[type=file] { display: none; }
+.btn:focus-visible, select:focus-visible, .pwr:focus-visible, .dial:focus-visible, .steamdial:focus-visible { outline: 2px solid var(--plunge); outline-offset: 2px; }
+.led { width: 9px; height: 9px; border-radius: 50%; background: #3a2219; flex: none; }
+.led.on { background: var(--plunge); box-shadow: 0 0 10px var(--plunge); }
+.ico-play { width: 0; height: 0; border-left: 10px solid currentColor; border-top: 6px solid transparent; border-bottom: 6px solid transparent; }
+.ico-stop { width: 10px; height: 10px; background: currentColor; border-radius: 1px; }
+
+.meters { display: flex; gap: 9px; padding: 12px; border-radius: 12px; background: var(--bench); border: 1px solid var(--line); }
+.mcol { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.mbar { position: relative; width: 15px; flex: 1; min-height: 130px; border-radius: 3px; overflow: hidden; background: #120a07; }
+.mbar::after { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, rgba(29,16,11,.85) 0 1px, transparent 1px 5px); }
+.mfill { position: absolute; inset: 0; transform-origin: bottom; transform: scaleY(0); background: linear-gradient(0deg, var(--ember), var(--peach) 70%, var(--steam)); }
+.mfill.gr { transform-origin: top; background: var(--plunge); }
+.mlab { font: 700 11px/1 var(--f-ui); letter-spacing: 0.14em; color: var(--steam-3); }
+.mscale { display: flex; flex-direction: column; justify-content: space-between; font: 400 14px/1 var(--f-lcd); color: var(--steam-3); padding-bottom: 17px; text-align: right; }
+
+.steambox { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 10px 14px 12px; border-radius: 12px; background: var(--bench); border: 1px solid var(--line); min-width: 190px; }
+.steam-title { font: 700 13px/1 var(--f-ui); letter-spacing: 0.4em; color: var(--steam); }
+.steamdial { position: relative; width: 150px; height: 150px; touch-action: none; cursor: ns-resize; border-radius: 50%; }
+.steamdial svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.stone { position: absolute; inset: 29px; border-radius: 50%; background: radial-gradient(circle at 36% 28%, #8d7a70, #4a3c36 50%, #2c2422 100%); box-shadow: 0 8px 16px rgba(0,0,0,.6), inset 0 2px 0 rgba(255,255,255,.18); }
+.stone .ptr, .cap .ptr { position: absolute; left: 50%; border-radius: 2px; background: var(--steam); }
+.stone .ptr { top: 8px; width: 4px; height: 24px; margin-left: -2px; }
+.steam-stage { font: italic 700 22px/1 var(--f-ui); text-transform: uppercase; color: var(--peach); }
+.steam-sub { font: 500 13px/1.25 var(--f-ui); color: var(--steam-3); text-align: center; }
+
+.strip { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; margin: 14px 0; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 9px;
+  border-radius: 12px; border: 1px solid var(--line); background: rgba(42, 23, 16, 0.95); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); box-shadow: 0 10px 24px rgba(0,0,0,.45); }
+.presetbox { display: flex; align-items: center; gap: 6px; flex: 1 1 260px; min-width: 0; }
+.presetbox select { flex: 1; min-width: 0; height: 40px; border-radius: 9px; border: 1px solid var(--line); padding: 0 10px; background: var(--bench); color: var(--steam); font: 700 15px/1 var(--f-ui); letter-spacing: 0.05em; text-transform: uppercase; }
+.btn.sq { width: 40px; padding: 0; justify-content: center; font-size: 17px; letter-spacing: 0; }
+
+.rooms { display: grid; gap: 12px; grid-template-columns: minmax(0, 1fr); }
+.room { min-width: 0; padding: 12px 12px 14px; border-radius: 12px; border: 1px solid var(--line);
+  background: repeating-linear-gradient(180deg, rgba(255,255,255,.02) 0 33px, rgba(0,0,0,.25) 33px 34px), linear-gradient(180deg, #321b12, var(--cedar-dark)); box-shadow: inset 0 14px 18px -12px rgba(0,0,0,.55); }
+.room-h { display: flex; align-items: flex-start; gap: 10px; }
+.pwr { flex: none; width: 30px; height: 30px; border-radius: 8px; border: 1px solid var(--line); background: var(--bench); display: grid; place-items: center; cursor: pointer; }
+.pwr .dot { width: 9px; height: 9px; border-radius: 50%; background: #3a2219; }
+.pwr[aria-pressed="true"] .dot { background: var(--ember); box-shadow: 0 0 10px var(--ember); }
+.room h2 { margin: 0; font: 700 15px/1.2 var(--f-ui); letter-spacing: 0.06em; text-transform: uppercase; color: var(--steam); }
+.room p { margin: 2px 0 0; font: 500 13.5px/1.2 var(--f-ui); color: var(--steam-3); }
+.knobs { display: grid; grid-template-columns: repeat(auto-fit, minmax(76px, 1fr)); gap: 14px 6px; margin-top: 12px; }
+.room.off .knobs { opacity: 0.4; }
+.knob { display: flex; flex-direction: column; align-items: center; text-align: center; min-width: 0; }
+.dial { position: relative; width: 60px; height: 60px; border-radius: 50%; touch-action: none; cursor: ns-resize; }
+.dial svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.trk { fill: none; stroke: #3a2219; stroke-width: 3.5; stroke-linecap: round; }
+.val { fill: none; stroke: var(--peach); stroke-width: 3.5; stroke-linecap: round; filter: drop-shadow(0 0 3px rgba(255,179,138,.55)); }
+.eff { fill: none; stroke: var(--rose); stroke-width: 1.6; stroke-linecap: round; }
+.cap { position: absolute; inset: 10px; border-radius: 50%; background: radial-gradient(circle at 36% 28%, #a0683f, #5a3420 50%, #2e180e 100%); box-shadow: 0 4px 7px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.2); }
+.cap .ptr { top: 4px; width: 2px; height: 12px; margin-left: -1px; }
+.kread { margin-top: 5px; font: 400 18px/1 var(--f-lcd); color: var(--lcd-ink); white-space: nowrap; }
+.kname { margin-top: 4px; font: 700 13px/1.08 var(--f-ui); text-transform: uppercase; color: var(--steam); text-wrap: balance; max-width: 100%; }
+.kwhat { margin-top: 3px; font: 600 10.5px/1.15 var(--f-ui); letter-spacing: 0.08em; text-transform: uppercase; color: var(--steam-3); }
+.foot { margin-top: 18px; padding: 14px 4px 0; border-top: 1px solid var(--line); font: 500 13.5px/1.45 var(--f-ui); color: var(--steam-3); display: grid; gap: 6px; }
+.foot p { margin: 0; max-width: 80ch; }
+.foot a { color: var(--peach); }
+
+@media (min-width: 760px) {
+  .rooms { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .room[data-w="6"] { grid-column: 1 / -1; }
+}
+@media (min-width: 1100px) {
+  .rooms { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+  .room[data-w="2"] { grid-column: span 3; } .room[data-w="4"] { grid-column: span 6; } .room[data-w="6"] { grid-column: span 6; } .room[data-w="5"] { grid-column: span 6; }
+  .room[data-id="birchOn"], .room[data-id="outOn"] { grid-column: span 3; }
+  .room[data-id="stoveOn"] { grid-column: span 2; } .room[data-id="towelOn"] { grid-column: span 4; }
+}
+@media (max-width: 760px) {
+  .unit { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .lcdcol { grid-column: 1 / -1; }
+  .meters { justify-content: center; }
+  .steambox { min-width: 0; padding-inline: 6px; }
+  .steamdial { width: 128px; height: 128px; } .stone { inset: 24px; }
+  .badge { text-align: left; }
+}
+@media (max-width: 560px) {
+  .knobs { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .room[data-w="2"] .knobs, .room[data-w="4"] .knobs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .dial { width: 54px; height: 54px; } .cap { inset: 9px; }
+  .kname { font-size: 12px; } .kread { font-size: 16px; }
+  .lcd-top { font-size: 20px; } #lcdRate { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="wrap"><div class="rack">
+  <header class="head">
+    <div>
+      <div class="maker">Ego Labs · Belgian Division · Built on Airwindows</div>
+      <h1>Belgian Sauna</h1>
+      <p class="tag">dream-pop vocal preamp · shoegaze edition · 90 degrees and rising</p>
+      <p class="note">The phone version. The same seven Airwindows effects as the plug-in, running in your browser. Load a voice memo or a stem, play with the dials, then export the WAV.</p>
+    </div>
+    <div class="badge">Zero latency<br>Level-matched<br>7 Airwindows effects</div>
+  </header>
+
+  <section class="unit" aria-label="Head unit">
+    <div class="lcdcol">
+      <div class="lcd" aria-live="polite">
+        <div class="lcd-row lcd-top"><span id="lcdPreset">P01 BELGIAN SAUNA</span><span class="dim" id="lcdRate">48.0 kHz</span></div>
+        <div class="lcd-joke" id="lcdJoke">The signature. Warm stove, wet towel, a choir in the fog.</div>
+        <div class="wavebox" id="wavebox" title="Tap to jump to a point"><canvas id="wave"></canvas><div class="playhead" id="playhead"></div><div class="progress" id="progress"></div></div>
+        <div class="lcd-row"><span id="lcdSrc">Heating the stones…</span><span class="dim" id="lcdPos">0:00.0</span></div>
+        <div class="lcd-info" id="lcdInfo">Load a voice memo or press Play to hear the demo voice.</div>
+      </div>
+      <div class="btnrow">
+        <label class="btn" for="file">Load vocal<input type="file" id="file" accept="audio/*,.wav,.aif,.aiff,.mp3,.m4a,.flac,.ogg"></label>
+        <button class="btn" id="demoBtn" type="button">Demo voice</button>
+        <button class="btn" id="loopBtn" type="button" aria-pressed="true"><span class="led on" id="loopLed"></span>Loop</button>
+        <button class="btn" id="expBtn" type="button">Export vocal</button>
+        <button class="btn" id="expFxBtn" type="button">Export steam only</button>
+      </div>
+    </div>
+    <div class="meters" aria-label="Level meters">
+      <div class="mscale" aria-hidden="true"><span>0</span><span>-12</span><span>-24</span><span>-36</span><span>-48</span><span>-60</span></div>
+      <div class="mcol"><div class="mbar"><div class="mfill" id="mIn"></div></div><span class="mlab">IN</span></div>
+      <div class="mcol"><div class="mbar"><div class="mfill" id="mOut"></div></div><span class="mlab">OUT</span></div>
+      <div class="mcol"><div class="mbar"><div class="mfill gr" id="mGr"></div></div><span class="mlab">LIM</span></div>
+    </div>
+    <div class="steambox">
+      <div class="steam-title">STEAM</div>
+      <div class="steamdial" id="steamDial" role="slider" tabindex="0" aria-label="STEAM macro" aria-valuemin="0" aria-valuemax="100">
+        <svg viewBox="0 0 160 160" id="steamSvg" aria-hidden="true"></svg>
+        <div class="stone" id="stone"><span class="ptr"></span></div>
+      </div>
+      <div class="steam-stage" id="steamStage">Proper sauna</div>
+      <div class="steam-sub" id="steamSub">50% · steams 15 controls</div>
+    </div>
+  </section>
+
+  <div class="strip" role="toolbar" aria-label="Transport and presets">
+    <button class="btn primary" id="playBtn" type="button"><span class="ico-play" id="playIco"></span><span id="playTxt">Play</span></button>
+    <button class="btn" id="plungeBtn" type="button" aria-pressed="false"><span class="led" id="plungeLed"></span>Cold plunge</button>
+    <div class="presetbox">
+      <button class="btn sq" id="prevBtn" type="button" aria-label="Previous preset">‹</button>
+      <select id="preset" aria-label="Preset"></select>
+      <button class="btn sq" id="nextBtn" type="button" aria-label="Next preset">›</button>
+    </div>
+  </div>
+
+  <main class="rooms" id="rooms"></main>
+
+  <footer class="foot">
+    <p>Drag knobs up and down, double-tap to reset. The pink arcs show where STEAM has pushed each knob. Exports are 24-bit WAVs at your file's sample rate, lined up exactly with the original, so drop them at bar 1.</p>
+    <p>Effects by Chris Johnson / Airwindows (MIT licence). Plug-in versions for Mac, Windows and Pro Tools: <a href="https://github.com/finleypower123-cell/BelgianSauna" target="_blank" rel="noopener">github.com/finleypower123-cell/BelgianSauna</a></p>
+  </footer>
+</div></div>
+
+<script>
+const SAUNA_DATA = /*DATA*/;
+const SAUNA_WASM_B64 = "/*WASM*/";
+</script>
+<script>
+/*UI*/
+</script>

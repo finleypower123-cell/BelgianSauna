@@ -49,6 +49,10 @@ Then rescan plug-ins in your DAW. Belgian Sauna has **zero latency**, so it's fi
 
 **Presets:** Belgian Sauna · Heaven or Ostend · Loveless in Leuven · Fog Over Ghent · Whisper in the Changing Room · Tape from the Attic · Antwerp Cathedral · Dry Towel
 
+## Phone and browser version
+
+`web/belgian-sauna.html` is the same engine compiled to WebAssembly, in a single page that runs on an iPhone, an Android phone or any browser. Load a voice memo, play with the dials and export a WAV. It can't record live from the mic. Rebuild it with `web/build.sh` (needs wasi-sdk).
+
 ## Build it yourself
 
 You need CMake 3.22 or newer. JUCE 9.0.4 downloads automatically.

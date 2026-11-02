@@ -2,3 +2,5 @@ build*/
 Builds/
 JuceLibraryCode/
 .DS_Store
+web/sauna.wasm
+web/sauna_data.json
