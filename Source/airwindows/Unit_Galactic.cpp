@@ -1,0 +1,22 @@
+// Compiles the original, unmodified Airwindows Galactic source (MIT licence, Chris Johnson).
+#if defined(__GNUC__) || defined(__clang__)
+ #pragma GCC diagnostic ignored "-Wall"
+ #pragma GCC diagnostic ignored "-Wextra"
+ #pragma GCC diagnostic ignored "-Wconversion"
+ #pragma GCC diagnostic ignored "-Wshadow"
+ #pragma GCC diagnostic ignored "-Wfloat-equal"
+ #pragma GCC diagnostic ignored "-Wsign-conversion"
+ #pragma GCC diagnostic ignored "-Wdouble-promotion"
+ #pragma GCC diagnostic ignored "-Wunused-parameter"
+ #pragma GCC diagnostic ignored "-Wold-style-cast"
+ #pragma GCC diagnostic ignored "-Wmultichar"
+#elif defined(_MSC_VER)
+ #pragma warning(push, 0)
+#endif
+#include "audioeffectx.h"
+#define createEffectInstance createEffectInstance_Galactic
+#include "Galactic/Galactic.h"
+#include "Galactic/Galactic.cpp"
+#include "Galactic/GalacticProc.cpp"
+#include "AirwindowsUnits.h"
+std::unique_ptr<AudioEffectX> aw::makeGalactic() { return std::unique_ptr<AudioEffectX> (new Galactic (nullptr)); }

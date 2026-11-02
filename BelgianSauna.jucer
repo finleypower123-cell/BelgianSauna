@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="LJVZgj" name="Belgian Sauna" projectType="audioplug" useAppConfig="0"
+              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" version="1.0.0"
+              companyName="Ego Labs" companyWebsite="https://github.com/finleypower123-cell/BelgianSauna"
+              bundleIdentifier="com.egolabs.belgiansauna"
+              pluginName="Belgian Sauna" pluginDesc="Belgian Sauna dream-pop vocal preamp"
+              pluginManufacturer="Ego Labs" pluginManufacturerCode="Eglb" pluginCode="BSna"
+              pluginFormats="buildAAX,buildAU,buildStandalone,buildVST3"
+              pluginCharacteristicsValue="" pluginVST3Category="Fx,Reverb"
+              pluginAUMainType="&apos;aufx&apos;" aaxIdentifier="com.egolabs.belgiansauna"
+              displaySplashScreen="0" cppLanguageStandard="17"
+              defines="JUCE_WEB_BROWSER=0&#10;JUCE_USE_CURL=0&#10;_USE_MATH_DEFINES&#10;JucePlugin_AAXDisableMultiMono=1">
+  <MAINGROUP id="ta51eh" name="Belgian Sauna">
+    <GROUP id="UwdCeU" name="Source">
+      <FILE id="3ZPcZ8" name="SaunaModel.h" compile="0" resource="0" file="Source/SaunaModel.h"/>
+      <FILE id="93hBpF" name="SaunaEngine.h" compile="0" resource="0" file="Source/SaunaEngine.h"/>
+      <FILE id="zxGzEY" name="PluginProcessor.h" compile="0" resource="0" file="Source/PluginProcessor.h"/>
+      <FILE id="WaEH9A" name="PluginProcessor.cpp" compile="1" resource="0" file="Source/PluginProcessor.cpp"/>
+      <FILE id="1wiDaM" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+      <FILE id="iHw68k" name="PluginEditor.cpp" compile="1" resource="0" file="Source/PluginEditor.cpp"/>
+    </GROUP>
+    <GROUP id="eLCtX4" name="Airwindows (MIT)">
+      <FILE id="ZngEX2" name="Air3.cpp" compile="0" resource="0" file="Source/airwindows/Air3/Air3.cpp"/>
+      <FILE id="4vTHnt" name="Air3.h" compile="0" resource="0" file="Source/airwindows/Air3/Air3.h"/>
+      <FILE id="i4mahm" name="Air3Proc.cpp" compile="0" resource="0" file="Source/airwindows/Air3/Air3Proc.cpp"/>
+      <FILE id="Hwd0MS" name="AirwindowsUnits.h" compile="0" resource="0" file="Source/airwindows/AirwindowsUnits.h"/>
+      <FILE id="KVlhbb" name="Ensemble.cpp" compile="0" resource="0" file="Source/airwindows/Ensemble/Ensemble.cpp"/>
+      <FILE id="4Cbm9q" name="Ensemble.h" compile="0" resource="0" file="Source/airwindows/Ensemble/Ensemble.h"/>
+      <FILE id="N0vGgx" name="EnsembleProc.cpp" compile="0" resource="0" file="Source/airwindows/Ensemble/EnsembleProc.cpp"/>
+      <FILE id="pJ5m7G" name="Galactic.cpp" compile="0" resource="0" file="Source/airwindows/Galactic/Galactic.cpp"/>
+      <FILE id="3B56BU" name="Galactic.h" compile="0" resource="0" file="Source/airwindows/Galactic/Galactic.h"/>
+      <FILE id="g3ioRM" name="GalacticProc.cpp" compile="0" resource="0" file="Source/airwindows/Galactic/GalacticProc.cpp"/>
+      <FILE id="dGhjqU" name="Pressure4.cpp" compile="0" resource="0" file="Source/airwindows/Pressure4/Pressure4.cpp"/>
+      <FILE id="1A9pee" name="Pressure4.h" compile="0" resource="0" file="Source/airwindows/Pressure4/Pressure4.h"/>
+      <FILE id="LNany3" name="Pressure4Proc.cpp" compile="0" resource="0" file="Source/airwindows/Pressure4/Pressure4Proc.cpp"/>
+      <FILE id="nSbjVi" name="TapeDelay2.cpp" compile="0" resource="0" file="Source/airwindows/TapeDelay2/TapeDelay2.cpp"/>
+      <FILE id="Y1lW0O" name="TapeDelay2.h" compile="0" resource="0" file="Source/airwindows/TapeDelay2/TapeDelay2.h"/>
+      <FILE id="AOYSa6" name="TapeDelay2Proc.cpp" compile="0" resource="0" file="Source/airwindows/TapeDelay2/TapeDelay2Proc.cpp"/>
+      <FILE id="UJptY3" name="ToTape6.cpp" compile="0" resource="0" file="Source/airwindows/ToTape6/ToTape6.cpp"/>
+      <FILE id="ZQfXYh" name="ToTape6.h" compile="0" resource="0" file="Source/airwindows/ToTape6/ToTape6.h"/>
+      <FILE id="Yvu5xR" name="ToTape6Proc.cpp" compile="0" resource="0" file="Source/airwindows/ToTape6/ToTape6Proc.cpp"/>
+      <FILE id="nuGfiO" name="Tube2.cpp" compile="0" resource="0" file="Source/airwindows/Tube2/Tube2.cpp"/>
+      <FILE id="Gy4q1A" name="Tube2.h" compile="0" resource="0" file="Source/airwindows/Tube2/Tube2.h"/>
+      <FILE id="xiNcAU" name="Tube2Proc.cpp" compile="0" resource="0" file="Source/airwindows/Tube2/Tube2Proc.cpp"/>
+      <FILE id="embKhO" name="Unit_Air3.cpp" compile="1" resource="0" file="Source/airwindows/Unit_Air3.cpp"/>
+      <FILE id="r3BdFd" name="Unit_Ensemble.cpp" compile="1" resource="0" file="Source/airwindows/Unit_Ensemble.cpp"/>
+      <FILE id="1BwPUi" name="Unit_Galactic.cpp" compile="1" resource="0" file="Source/airwindows/Unit_Galactic.cpp"/>
+      <FILE id="uZOPs4" name="Unit_Pressure4.cpp" compile="1" resource="0" file="Source/airwindows/Unit_Pressure4.cpp"/>
+      <FILE id="C9N9is" name="Unit_TapeDelay2.cpp" compile="1" resource="0" file="Source/airwindows/Unit_TapeDelay2.cpp"/>
+      <FILE id="I4WhzO" name="Unit_ToTape6.cpp" compile="1" resource="0" file="Source/airwindows/Unit_ToTape6.cpp"/>
+      <FILE id="pshLpp" name="Unit_Tube2.cpp" compile="1" resource="0" file="Source/airwindows/Unit_Tube2.cpp"/>
+      <FILE id="U0y5gG" name="audioeffectx.h" compile="0" resource="0" file="Source/airwindows/audioeffectx.h"/>
+    </GROUP>
+  </MAINGROUP>
+  <JUCEOPTIONS JUCE_VST3_CAN_REPLACE_VST2="0"/>
+  <EXPORTFORMATS>
+    <XCODE_MAC targetFolder="Builds/MacOSX" microphonePermissionNeeded="1"
+               microphonePermissionsText="Belgian Sauna needs your microphone so you can sing into it."
+               hardenedRuntime="0">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug" targetName="Belgian Sauna" headerPath="../../Source"/>
+        <CONFIGURATION isDebug="0" name="Release" targetName="Belgian Sauna" headerPath="../../Source"
+                       macOSDeploymentTarget="11.0" osxArchitecture="64BitUniversal"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_audio_basics" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors_headless" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_core" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../JUCE/modules"/>
+      </MODULEPATHS>
+    </XCODE_MAC>
+    <VS2022 targetFolder="Builds/VisualStudio2022">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug" targetName="Belgian Sauna" headerPath="../../Source"/>
+        <CONFIGURATION isDebug="0" name="Release" targetName="Belgian Sauna" headerPath="../../Source"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_audio_basics" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors_headless" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_core" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../JUCE/modules"/>
+      </MODULEPATHS>
+    </VS2022>
+  </EXPORTFORMATS>
+  <MODULES>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_plugin_client" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_processors_headless" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+  </MODULES>
+</JUCERPROJECT>
