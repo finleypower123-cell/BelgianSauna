@@ -60,7 +60,7 @@ cmake -S . -B build -G Xcode && cmake --build build --config Release
 cmake -S . -B build -G "Visual Studio 17 2022" -A x64 && cmake --build build --config Release
 ```
 
-To use **Projucer** instead, install JUCE 9, point Projucer's Global Paths at it, open `BelgianSauna.jucer` and export to Xcode or Visual Studio.
+To use **Projucer** instead, install JUCE 9. In Projucer's **Global Paths**, set **Path to JUCE** to your JUCE folder and **JUCE Modules** to the `modules` folder inside it. Then open `BelgianSauna.jucer` and export to Xcode or Visual Studio.
 
 Every push to `main` builds Windows and Mac versions on GitHub and publishes them to Releases (`.github/workflows/build.yml`).
 
